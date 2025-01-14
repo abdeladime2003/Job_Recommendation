@@ -1,0 +1,17 @@
+Parse this text into a JSON format with the following properties. If a property is not present in the input text, leave it as an empty string (""). Match variations or synonyms for each property (e.g., "Work Experience" for "Professional Experience") and extract the relevant information. 
+
+Properties to extract:
+- Summary: A brief overview or personal statement.
+- Education: Degrees, institutions, and graduation years.
+- Professional Experience: Job titles, companies, durations, and responsibilities.
+- Skills: A list of technical or soft skills.
+- Language: A list of languages spoken or known.
+
+Output the result in the following JSON format:
+{
+  "Summary": "",
+  "Education": "",
+  "ProfessionalExperience": "",
+  "Skills": "",
+  "Language": ""
+}
