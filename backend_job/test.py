@@ -9,5 +9,5 @@ job_offer = {
     "lien_postulation": "https://INPT.ma",
 }
 
-response = requests.post("https://89a2-196-92-162-121.ngrok-free.app/api/add-job-offer/", json=job_offer)
+response = requests.post("https://b8c4-105-155-240-10.ngrok-free.app/api/add-job-offer/", json=job_offer)
 print(response.json())

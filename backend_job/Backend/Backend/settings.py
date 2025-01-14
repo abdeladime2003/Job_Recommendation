@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '89a2-196-92-162-121.ngrok-free.app'  # 🔑 Add your Ngrok URL here
+    'b8c4-105-155-240-10.ngrok-free.app'
 ]
 
 
