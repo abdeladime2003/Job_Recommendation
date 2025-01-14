@@ -2,20 +2,30 @@ from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, WebDriverException
 from selenium.webdriver.support.ui import WebDriverWait
 import pandas as pd
-
+import requests
+import json
 class AnapecScraper:
-    def __init__(self, driver_path):
+    def __init__(self, driver_path,endpoint):
         self.driver_path = driver_path
         self.service = Service(self.driver_path)
         self.driver = webdriver.Firefox(service=self.service)
-        self.output_dataframe = pd.DataFrame(columns=["Description", "Lien", "Contrat", "Lieu", "Date", "comptence"])
+        self.output_ = pd.DataFrame(columns=["Description", "Lien", "Contrat", "Lieu", "comptence"])
         self.anapec = "https://anapec.ma/home-page-o1/chercheur-emploi/offres-demploi/?pg="
+        self.endpoint = endpoint
+    def open_website(self, url, attempts = 3, wait = 10):
+        for attempt in range(attempts):
+            try: 
+                self.driver.get(url)    
+                if self.driver.current_url == url:
+                    break
+            except WebDriverException as e:
+                print(f"{attempt} failed retrying in {wait} seconds")
+    
 
-    def open_website(self, url):
-        self.driver.get(url)
+        
 
     def get_offres_pages(self, url):
         self.open_website(url)
@@ -58,6 +68,7 @@ class AnapecScraper:
                     if titre_champ.text == 'Lieu de travail :':
                         data["Lieu"] = info.text
                 data['Date'] = info_offre[-1].text
+                self.send_data(data,self.endpoint)
                 self.output_dataframe = pd.concat([self.output_dataframe, pd.DataFrame([data])], ignore_index=True)
                 self.driver.close()
                 self.driver.switch_to.window(tab[0])
@@ -65,6 +76,11 @@ class AnapecScraper:
 
     def get_output_dataframe(self):
         return self.output_dataframe
+    @classmethod
+    def send_data(self,data, endpoint, retry = 3):
+        
+        
+        requests.post(endpoint, json=json.dumps(data))
 
 # Usage example:
 # scraper = AnapecScraper('driver/geckodriver.exe')
