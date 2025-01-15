@@ -91,4 +91,4 @@ target/
 # Mypy cache
 .mypy_cache/
 ##scraping_emploi_ma\config.py ignore it  
-config.py
+/scraping_emploi_ma/config.py
