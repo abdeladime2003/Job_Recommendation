@@ -11,6 +11,8 @@ import json
 
 
 class AnapecScraper:
+    """"Cette Class represente Un script de scraping du site marocain Anapec"""
+    """Ce Script est Concu pour prelever le Lien de l'offre, Description, Competence cherche, Type de contrat"""
     def __init__(self, driver_path, endpoint, sender):
         self.driver_path = driver_path
         self.service = Service(self.driver_path)
