@@ -92,4 +92,4 @@ target/
 .mypy_cache/
 ##scraping_emploi_ma\config.py ignore it  
 /scraping_emploi_ma/config.py
-/scraping_emploi_ma/scraper/__pycache__
+/scraping_emploi_ma/scraper/__pycache__/
