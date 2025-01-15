@@ -4,19 +4,19 @@ import time
 import csv
 import logging
 from config import BASE_URL, HEADERS, CSV_FILE_PATH
-
+date_today = datetime.today().strftime('%d.%m.%Y')
 class Scraper:
     def __init__(self, base_url=BASE_URL, headers=HEADERS):
         self.base_url = base_url
         self.headers = headers or {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Gecko/20100101 Firefox/89.0'
         }
-
+    date = datetime.today().strftime('%d.%m.%Y')
     def scrape(self, max_pages=3):
         job_listings = []
         logging.info("Début du scraping des offres d'emploi.")
 
-        for page in range(1, max_pages + 1):
+        for page in range(0, max_pages + 1):
             url = f"{self.base_url}?page={page}"
             logging.info(f"Scraping de la page : {url}")
 
@@ -60,7 +60,12 @@ class Scraper:
 
                 # Extract publication date
                 date_tag = offer.find("time")
-                publication_date = date_tag.text.strip() if date_tag else "N/A"
+                date = date_tag.text.strip() if date_tag else "N/A"
+                if date == date_today :
+                    publication_date = date
+                else :
+                    continue
+                
 
                 # Append job details to the list
                 job_listings.append({

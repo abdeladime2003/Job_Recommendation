@@ -1,10 +1,9 @@
 from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure
 
-# Connect to MongoDB
-client = MongoClient('mongodb://localhost:27017/')
-
-# Access the database
-db = client['job_recommendation']
-
-# Access the job_offers collection
-job_offers_collection = db['job_offers']
+try:
+    client = MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+    client.server_info()  # Teste la connexion
+    print("Connexion réussie à MongoDB.")
+except ConnectionFailure as e:
+    print(f"Échec de la connexion à MongoDB : {e}")

@@ -1,28 +1,27 @@
 from rest_framework import serializers
 
-class JobOfferSerializer(serializers.Serializer):
-    Description = serializers.CharField(allow_blank=True, required=False)
-    Lien = serializers.URLField(allow_blank=True, required=False)
-    Contrat = serializers.CharField(allow_blank=True, required=False)
-    Lieu = serializers.CharField(allow_blank=True, required=False)
-    comptence = serializers.ListField(
-        child=serializers.CharField(), required=False, allow_empty=True)
-    Date = serializers.CharField(allow_blank=True, required=False)
-
-    def validate_comptence(self, value):
+class FlexibleJobOfferSerializer(serializers.Serializer):
+    titre = serializers.CharField(max_length=255, required=False, allow_blank=True)
+    entreprise = serializers.CharField(max_length=255, required=False, allow_blank=True)
+    description = serializers.CharField( required=False, allow_blank=True)
+    localisation = serializers.CharField(max_length=255, required=False, allow_blank=True)
+    description = serializers.CharField(required=False, allow_blank=True)
+    competences_cles = serializers.ListField(
+        child=serializers.CharField(max_length=255, required=False), required=False
+    )
+    niveau_etudes_requis = serializers.CharField(max_length=255, required=False, allow_blank=True)
+    niveau_experience = serializers.CharField(max_length=255, required=False, allow_blank=True)
+    contrat_propose = serializers.CharField(max_length=50, required=False, allow_blank=True)
+    date_publication = serializers.DateField(
+        format="%d.%m.%Y",
+        input_formats=["%d.%m.%Y"],
+        required=False,
+        allow_null=True,
+    )
+    lien = serializers.URLField(required=False, allow_blank=True)
+    def validate_competences_cles(self, value):
         """
-        Si le champ 'comptence' est une liste, la transformer en chaîne.
+        Validation personnalisée pour les compétences.
+        Si la liste est vide ou non fournie, elle peut être ignorée.
         """
-        if isinstance(value, list):
-            return ', '.join(value)  # Convertit la liste en une chaîne
-        return value
-
-    def validate(self, data):
-        """
-        Valider le dictionnaire complet avant d'envoyer.
-        """
-        # Exemple de validation: vérifier si un champ nécessaire est vide
-        if not data.get('Description'):
-            raise serializers.ValidationError("Le champ Description est requis.")
-        
-        return data
+        return value or []
