@@ -4,6 +4,7 @@ import time
 import csv
 import logging
 from config import BASE_URL, HEADERS, CSV_FILE_PATH
+from datetime import datetime
 date_today = datetime.today().strftime('%d.%m.%Y')
 class Scraper:
     def __init__(self, base_url=BASE_URL, headers=HEADERS):
@@ -89,7 +90,7 @@ class Scraper:
 
     def save_to_csv(self, data):
         try:
-            with open(CSV_FILE_PATH, 'w', newline='', encoding='utf-8') as file:
+            with open(CSV_FILE_PATH, 'a', newline='', encoding='utf-8') as file:
                 writer = csv.DictWriter(file, fieldnames=data[0].keys())
                 writer.writeheader()
                 writer.writerows(data)
