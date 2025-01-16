@@ -1,12 +1,15 @@
-from Scraper import *
+from Scraper.ScraperSrc import *
+from Scraper.Sender import *
+from config import *
+#Initialisation
 
-driverPath = "driver/geckodriver.exe"
-endpoint = "https://719d-105-155-133-97.ngrok-free.app/api/add-job-offer/"
-Instance = AnapecScraper(driver_path=driverPath, endpoint=endpoint)
-Site = 'https://anapec.ma/home-page-o1/chercheur-emploi/offres-demploi/?pg=1'
+sender = Sender()
+Instance = AnapecScraper(driver_path=driverPath, sender=sender,endpoint=endpoint)
 
+
+###Scraping
 Instance.scrape_job_offers(Site)
 
-#DataFrame = Instance.get_output_dataframe()
+DataFrame = Instance.get_output_dataframe()
 
-#DataFrame.to_csv("Prod.csv")
+DataFrame.to_csv(csvPath)
