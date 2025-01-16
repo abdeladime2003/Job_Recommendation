@@ -10722,3 +10722,73 @@
 {"asctime": "2025-01-15 23:17:31,899", "levelname": "ERROR", "message": "attempt 2 Failed to connect, code status 404"}
 {"asctime": "2025-01-15 23:17:32,669", "levelname": "WARNING", "message": "Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)': /session/81af7321-db6d-4396-8e2e-c2e6b24c38e7/window"}
 {"asctime": "2025-01-15 23:17:36,724", "levelname": "WARNING", "message": "Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F6F8B44AD0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/81af7321-db6d-4396-8e2e-c2e6b24c38e7/window"}
+{"asctime": "2025-01-16 18:41:03,912", "levelname": "INFO", "message": "Connected to Server successfully"}
+{"asctime": "2025-01-16 18:41:03,913", "levelname": "INFO", "message": "Page opened Succefully"}
+{"asctime": "2025-01-16 18:41:03,963", "levelname": "INFO", "message": "Started Scraping"}
+{"asctime": "2025-01-16 18:41:03,964", "levelname": "INFO", "message": "Scraping page 1"}
+{"asctime": "2025-01-16 18:41:07,214", "levelname": "INFO", "message": "Connected to Server successfully"}
+{"asctime": "2025-01-16 18:41:08,590", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:09,013", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:10,140", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:10,407", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:12,160", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:12,400", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:14,090", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:14,346", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:15,408", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:15,665", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:17,117", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:17,360", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:18,337", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:18,600", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:19,635", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:19,898", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:21,347", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:21,698", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:22,772", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:23,031", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:24,062", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:24,342", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:25,326", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:25,613", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:26,646", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:26,898", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:27,914", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:28,159", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:29,160", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:29,395", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:29,413", "levelname": "INFO", "message": "Completed page 1"}
+{"asctime": "2025-01-16 18:41:29,413", "levelname": "INFO", "message": "Scraping page 2"}
+{"asctime": "2025-01-16 18:41:33,398", "levelname": "INFO", "message": "Connected to Server successfully"}
+{"asctime": "2025-01-16 18:41:34,324", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:34,571", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:35,603", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:35,840", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:36,884", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:37,119", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:38,050", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:38,314", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:39,308", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:39,694", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:40,649", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:40,882", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:41,860", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:42,099", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:43,244", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:43,476", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:44,365", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:44,599", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:46,030", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:46,404", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:47,294", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:47,547", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:48,907", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:49,207", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:50,189", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:50,423", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:51,343", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:51,607", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:52,607", "levelname": "INFO", "message": "Sending Data into Database"}
+{"asctime": "2025-01-16 18:41:52,890", "levelname": "INFO", "message": "Connection Established!"}
+{"asctime": "2025-01-16 18:41:52,907", "levelname": "INFO", "message": "Completed page 2"}
+{"asctime": "2025-01-16 18:41:55,878", "levelname": "INFO", "message": "Scraping completed"}
