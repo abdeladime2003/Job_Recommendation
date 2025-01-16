@@ -100,9 +100,15 @@ class RekruteScraper:
             self.scrape_page(page)
 
     def save_to_csv(self, filename='offres_rekrute.csv'):
-        df = pd.DataFrame(self.data)
-        df.to_csv(filename, index=False, encoding='utf-8-sig')
-        print(f"Scraping terminé. Les données ont été sauvegardées dans '{filename}'.")
+        ## ajouter au data exisitant 
+        try:
+            df = pd.read_csv(filename)
+            df = pd.concat([df, pd.DataFrame(self.data)])
+        except:
+            df = pd.DataFrame(self.data)
+        df.to_csv(filename, index=False)
+        print(f"Données enregistrées dans {filename}.")
+        
 
     def close_driver(self):
         self.driver.quit()
