@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-8 py-4 bg-white text-blue-600 rounded-full font-semibold 
+    hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+
+  .nav-link {
+    @apply relative py-2 text-current hover:text-blue-400 transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 
+    transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .feature-card {
+    @apply p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl 
+    transform hover:-translate-y-2 transition-all duration-300;
+  }
+}
