@@ -3,7 +3,7 @@ import { Search, Upload, History, ChevronRight, Sparkles } from 'lucide-react';
 import FeedbackForm from './Feedback';
 
 const mockUser = {
-  name: "Thomas",
+  name: localStorage.getItem("name"),
   lastLogin: "2024-01-18",
   cvLastUpdate: "2024-01-01"
 };

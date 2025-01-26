@@ -7,6 +7,7 @@ import NotFound  from './components/NotFound';
 import Signin from './components/Signin';
 import ImageClassifier from './components/dashbord';
 import CVUpload from './components/CvUpload';
+import VerifyEmail from './components/verifyemail';
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,7 @@ function App() {
         <Route path='signin' element = {<Signin/>}/> 
         <Route path="dashboard" element={<ImageClassifier/>}/>
         <Route path="upload" element={<CVUpload/>}/>
+        <Route path="/verify-email/:token" component={VerifyEmail} />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>

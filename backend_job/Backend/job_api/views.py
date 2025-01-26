@@ -5,7 +5,7 @@ from pymongo import MongoClient, errors
 from bson import ObjectId
 from datetime import datetime, date
 from .serializers import FlexibleJobOfferSerializer
-
+from .utils.mongo import get_mongo_connection
 class AddJobOfferView(APIView):
     def convert_dates(self, data):
         """
@@ -25,9 +25,7 @@ class AddJobOfferView(APIView):
 
             # Connexion à MongoDB
             try:
-                client = MongoClient('mongodb://localhost:27017/')
-                db = client['job_recommendation']
-                job_offers_collection = db['job_offers']
+                job_offers_collection = get_mongo_connection()
 
                 # Convertir les dates avant insertion
                 validated_data = self.convert_dates(validated_data)
@@ -59,3 +57,40 @@ class AddJobOfferView(APIView):
             "message": "Erreur de validation des données.",
             "errors": serializer.errors
         }, status=status.HTTP_400_BAD_REQUEST)
+class GetJobOffersView(APIView):
+    def format_job_offer(self, job_offer):
+        """
+        Formater un document MongoDB en un dictionnaire lisible par JSON.
+        """
+        job_offer["_id"] = str(job_offer["_id"])  # Convertir ObjectId en chaîne
+        return job_offer
+
+    def get(self, request):
+        try:
+            job_offers_collection = get_mongo_connection()
+
+            # Obtenir le nombre d'offres depuis les paramètres de requête
+            limit = request.query_params.get('limit', 5)  # Par défaut, limite à 5
+            try:
+                limit = int(limit)  # Convertir en entier
+            except ValueError:
+                return Response({
+                    "message": "Le paramètre 'limit' doit être un entier."
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+            # Récupérer les offres d'emploi triées par date de publication
+            job_offers = job_offers_collection.find().sort([("date_publication", -1)]).limit(limit)
+
+            # Formater les données pour JSON
+            formatted_job_offers = [self.format_job_offer(offer) for offer in job_offers]
+
+            return Response({
+                "message": "Données récupérées avec succès.",
+                "data": formatted_job_offers
+            }, status=status.HTTP_200_OK)
+
+        except errors.ConnectionFailure as e:
+            return Response({
+                "message": "Erreur de connexion à MongoDB.",
+                "error": str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

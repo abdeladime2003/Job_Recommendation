@@ -13,11 +13,10 @@ const Signup = () => {
   const [focusedField, setFocusedField] = useState(null);
 
   const [error, setError] = useState("");
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:8000/user/register/", {
+      const response = await axios.post("http://127.0.0.1:8000/user/signup/", {
         email,
         password,
         age,
@@ -28,6 +27,7 @@ const Signup = () => {
 
       });
       console.log(response.data);
+      console.log("User created successfully");
     } catch (err) {
       console.error(err);
       setError(err.response.data.detail);

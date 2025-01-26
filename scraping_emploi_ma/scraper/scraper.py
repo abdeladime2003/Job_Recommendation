@@ -6,7 +6,6 @@ import logging
 from config import BASE_URL, HEADERS, CSV_FILE_PATH
 from datetime import datetime , timedelta
 date_today = datetime.today().strftime('%d.%m.%Y')
-date_yesterday = (datetime.today() - timedelta(days=1)).strftime('%d.%m.%Y')
 class Scraper:  
     def __init__(self, base_url=BASE_URL, headers=HEADERS):
         self.base_url = base_url
@@ -63,11 +62,10 @@ class Scraper:
                 # Extract publication date
                 date_tag = offer.find("time")
                 date = date_tag.text.strip() if date_tag else "N/A"
-                if date == date_today or date == date_yesterday:
+                if date == date_today:
                     publication_date = date
-                else :
+                else:
                     continue
-                
 
                 # Append job details to the list
                 job_listings.append({

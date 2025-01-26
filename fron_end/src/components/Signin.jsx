@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Stars, Sparkle, KeyRound, Shield, Loader2, Eye, EyeOff, AlertCircle } from "lucide-react";
 //from lucide _react
 import axios from "axios";
@@ -10,7 +11,7 @@ const Signin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [focusedField, setFocusedField] = useState(null);
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -32,12 +33,11 @@ const Signin = () => {
         email,
         password,
       });
-  
-      // Stockage du token si présent dans la réponse
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        // Ajout du token aux headers par défaut pour les futures requêtes
-        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+      if (response.status === 200) {
+        localStorage.setItem("accessToken", response.data.access_token);
+        localStorage.setItem("refreshToken", response.data.refresh_token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        navigate("/dashboard");
       }
   
     } catch (err) {
