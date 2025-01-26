@@ -93,3 +93,4 @@ target/
 ##scraping_emploi_ma\config.py ignore it  
 /scraping_emploi_ma/config.py
 /scraping_emploi_ma/scraper/__pycache__/
+tets1.ipynb
