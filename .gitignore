@@ -93,4 +93,5 @@ target/
 ##scraping_emploi_ma\config.py ignore it  
 /scraping_emploi_ma/config.py
 /scraping_emploi_ma/scraper/__pycache__/
-tets1.ipynb
+##ignore C:\Users\LENOVO\Desktop\project_job\tets1.ipynb
+/tets1.ipynb
