@@ -95,3 +95,4 @@ target/
 /scraping_emploi_ma/scraper/__pycache__/
 ##ignore C:\Users\LENOVO\Desktop\project_job\tets1.ipynb
 tets1.ipynb
+.metals/
