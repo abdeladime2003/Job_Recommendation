@@ -9,3 +9,10 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-sql" % "3.5.4",
   "org.mongodb.spark" %% "mongo-spark-connector" % "10.4.0"
 )
+
+fork in run := true
+
+javaOptions ++= Seq(
+  "--add-exports=java.base/sun.nio.ch=ALL-UNNAMED",
+  "--add-opens=java.base/java.nio=ALL-UNNAMED"
+)

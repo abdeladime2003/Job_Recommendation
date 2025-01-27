@@ -97,3 +97,13 @@ target/
 tets1.ipynb
 .metals/
 .scala-build/
+.bloop/
+target/
+.project/
+.idea/
+*.log
+*.class
+test.py
+3.2
+3.13.0
+db.sqlite3
