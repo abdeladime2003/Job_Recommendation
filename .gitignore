@@ -96,3 +96,4 @@ target/
 ##ignore C:\Users\LENOVO\Desktop\project_job\tets1.ipynb
 tets1.ipynb
 .metals/
+.scala-build/
