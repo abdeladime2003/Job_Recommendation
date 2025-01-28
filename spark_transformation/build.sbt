@@ -7,7 +7,7 @@ scalaVersion := "2.12.18"
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % "3.5.4",
   "org.apache.spark" %% "spark-sql" % "3.5.4",
-  "org.mongodb.spark" %% "mongo-spark-connector" % "10.4.0"
+  "org.mongodb.scala" %% "mongo-scala-driver" % "4.9.0"
 )
 
 fork in run := true

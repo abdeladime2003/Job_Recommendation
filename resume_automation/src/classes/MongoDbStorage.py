@@ -36,6 +36,3 @@ def get_mongo_connection():
     except Exception as e:
         print(" Une erreur est survenue :", e)
         return None
-
-# Appel de la fonction
-get_mongo_connection()

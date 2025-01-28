@@ -83,7 +83,7 @@ class LLMTextToDict:
         Returns:
             str: The prompt template
         """
-        FILE_PATH = self.load_config()["prompt_file"]
+        FILE_PATH = r"C:\Users\LENOVO\Desktop\project_job\resume_automation\src\resources\base_prompt.txt"
         if not os.path.exists(FILE_PATH):
             raise FileNotFoundError(f"Prompt file not found at {FILE_PATH}")
         try:
