@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'job_api',
     'user',
+    'cvs',
 ]
 AUTH_USER_MODEL = 'user.User'
 
