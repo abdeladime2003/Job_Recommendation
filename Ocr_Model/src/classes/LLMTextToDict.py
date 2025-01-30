@@ -23,7 +23,7 @@ class LLMTextToDict:
     Attributes:
         LLM_CONFIG_FILE (str): Path to the YAML configuration file for LLM settings
     """
-    LLM_CONFIG_FILE = r"C:\Users\LENOVO\Desktop\project_job\resume_automation\config\llm_config.yaml"
+    LLM_CONFIG_FILE = r"C:\Users\LENOVO\Desktop\project_job\Ocr_Model\config\llm_config.yaml"
 
     def __init__(self, text: str):
         """
@@ -83,7 +83,7 @@ class LLMTextToDict:
         Returns:
             str: The prompt template
         """
-        FILE_PATH = r"C:\Users\LENOVO\Desktop\project_job\resume_automation\src\resources\base_prompt.txt"
+        FILE_PATH = r"C:\Users\LENOVO\Desktop\project_job\Ocr_Model\src\resources\base_prompt.txt"
         if not os.path.exists(FILE_PATH):
             raise FileNotFoundError(f"Prompt file not found at {FILE_PATH}")
         try:

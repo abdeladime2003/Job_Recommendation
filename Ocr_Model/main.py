@@ -2,20 +2,20 @@ import os
 import yaml
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
-from resume_automation.src.classes.PdfExtractText import PdfExtractText
-from resume_automation.src.classes.LLMTextToDict import LLMTextToDict
-from resume_automation.src.classes.MongoDbStorage import get_mongo_connection
+from Ocr_Model.src.classes.PdfExtractText import PdfExtractText
+from Ocr_Model.src.classes.LLMTextToDict import LLMTextToDict
+from Ocr_Model.src.classes.MongoDbStorage import get_mongo_connection
 import warnings
 
 warnings.filterwarnings("ignore")
-CONFIG_FILE = r"C:\Users\LENOVO\Desktop\project_job\resume_automation\config\main_config.yaml"
+CONFIG_FILE = r"C:\Users\LENOVO\Desktop\project_job\Ocr_Model\config\main_config.yaml"
 
 def load_config(config_file=CONFIG_FILE):
     with open(config_file, 'r') as file:
         config = yaml.safe_load(file)
         MIN_THRESHOLD = config["MIN_THRESHOLD"]
         return MIN_THRESHOLD
-def main(file_path=r"C:\Users\LENOVO\Desktop\project_job\resume_automation\uploads\test.pdf") :
+def main(file_path=r"C:\Users\LENOVO\Desktop\project_job\Ocr_Model\uploads\test.pdf") :
     File_path = file_path
     MIN_THRESHOLD = load_config()
     print(f"i get the file {file_path}")
