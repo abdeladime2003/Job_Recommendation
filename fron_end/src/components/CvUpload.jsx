@@ -61,8 +61,7 @@ const CVUpload = () => {
           'Content-Type': 'multipart/form-data',
         }
       });
-
-      console.log('Upload réussi:', response.data);
+      console.log('Upload response:', response.data);
       setUploadStatus('success');
     } catch (error) {
       console.error('Erreur d\'upload:', error);
