@@ -12,6 +12,7 @@ class FlexibleJobOfferSerializer(serializers.Serializer):
     niveau_experience = serializers.CharField(max_length=255, required=False, allow_blank=True)
     contrat_propose = serializers.CharField(max_length=50, required=False, allow_blank=True)
     teletravail = serializers.CharField(max_length=3, required=False, allow_blank=True)
+    processed = serializers.BooleanField(required=False, default=False)
     ## accepter les dates et string 
     date_publication = serializers.DateField(
         format="%d.%m.%Y",

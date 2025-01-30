@@ -3,7 +3,7 @@
 import logging
 from logging.handlers import RotatingFileHandler
 
-#  Chemin du fichier de log
+#  Chemin du fichier de log C:\Users\LENOVO\Desktop\project_job\JobFinderPipeline\logs\Scraping_emploi.log
 LOG_FILE_PATH = "./logs/Scraping_emploi.log"
 
 #  Configuration de la rotation des logs

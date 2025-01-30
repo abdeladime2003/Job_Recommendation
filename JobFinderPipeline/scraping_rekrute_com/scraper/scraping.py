@@ -92,14 +92,14 @@ class RekruteScraper:
                 'competences_cles': competences,
                 'contrat_propose': type_contrat,
                 'teletravail': teletravail,
-                'lien': lien
+                'lien': lien,
             })
 
     def scrape_all_pages(self):
         for page in range(1, self.total_pages + 1):
             self.scrape_page(page)
 
-    def save_to_csv(self, filename='offres_rekrute.csv'):
+    def save_to_csv(self, filename=r'C:\Users\LENOVO\Desktop\project_job\JobFinderPipeline\data\offres_rekrute.csv'):
         ## ajouter au data exisitant 
         try:
             df = pd.read_csv(filename)
