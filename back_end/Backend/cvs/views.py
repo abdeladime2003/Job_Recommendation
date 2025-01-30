@@ -4,7 +4,7 @@ from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from resume_automation.main import main
+from Ocr_Model.main import main
 from .utils.logger import logger
 logger.info("Logger initialisé pour le traitement des CVs.")
 class CVUploadView(APIView):
