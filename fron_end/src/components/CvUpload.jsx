@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Upload, X, FileText, Check, AlertCircle, Sparkles, Star } from 'lucide-react';
-
+import { useNavigate } from 'react-router-dom';
 const CVUpload = () => {
   const [dragActive, setDragActive] = useState(false);
   const [file, setFile] = useState(null);
   const [uploadStatus, setUploadStatus] = useState(null);
   const [mounted, setMounted] = useState(false);
-
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
@@ -63,6 +65,7 @@ const CVUpload = () => {
       });
       console.log('Upload response:', response.data);
       setUploadStatus('success');
+      navigate('/jobs', { state: { jobs: response.data.recommendations } });
     } catch (error) {
       console.error('Erreur d\'upload:', error);
       setUploadStatus('error');

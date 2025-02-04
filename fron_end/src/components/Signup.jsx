@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Stars, Sparkle, Captions, Wand2, Sparkles } from "lucide-react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -11,6 +12,10 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [focusedField, setFocusedField] = useState(null);
+  const navigate = useNavigate();
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
 
   const [error, setError] = useState("");
   const handleSubmit = async (e) => {
@@ -28,6 +33,9 @@ const Signup = () => {
       });
       console.log(response.data);
       console.log("User created successfully");
+      //sleep(2000);
+      await delay(2000);
+      navigate("/signin");
     } catch (err) {
       console.error(err);
       setError(err.response.data.detail);
