@@ -108,3 +108,5 @@ test.py
 3.13.0  
 db.sqlite3
 data/
+template.env
+*.env
