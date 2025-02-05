@@ -1,27 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { Star, Send, Smile, Frown, Meh, Sparkles, Heart, ThumbsUp, MessageCircle , Check} from 'lucide-react';
-
+import axios from 'axios';
 const FeedbackForm = () => {
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
   const [comment, setComment] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    // Simuler l'envoi
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setSubmitted(true);
-    setIsLoading(false);
-    
-    setTimeout(() => {
-      setSubmitted(false);
-      setRating(0);
-      setComment('');
-    }, 3000);
+
+    const token = localStorage.getItem("accessToken"); // ✅ Récupérer le token utilisateur
+    if (!token) {
+      alert("Vous devez être connecté !");
+      return;
+    }
+
+    const response = await fetch("http://localhost:8000/feedbacks/feedback/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}` 
+      },
+      body: JSON.stringify({
+        comment: comment,
+        rating: rating
+      })
+    });
+    console.log(token);
+    if (response.ok) {
+      console.log("Feedback envoyé avec succès !");
+    } else {
+      console.log("Erreur lors de l'envoi du feedback !");
+    }
   };
+
 
   const getMoodIcon = (rating) => {
     if (rating >= 4) return <Smile className="w-16 h-16 text-emerald-500" />;
@@ -38,7 +51,6 @@ const FeedbackForm = () => {
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
         <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
       </div>
-
       <div className="max-w-2xl mx-auto">
         {/* Header with floating icons */}
         <div className="relative h-32 mb-8">

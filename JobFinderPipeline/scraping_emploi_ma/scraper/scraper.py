@@ -5,19 +5,19 @@ import csv
 import logging
 from config import BASE_URL, HEADERS, CSV_FILE_PATH
 from datetime import datetime , timedelta
-## -10 days
-date_today = (datetime.today() - timedelta(days=10) ).strftime('%d.%m.%Y')
+date_today = datetime.now().strftime("%d.%m.%Y")
 class Scraper:  
     def __init__(self, base_url=BASE_URL, headers=HEADERS):
         self.base_url = base_url
         self.headers = headers or {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Gecko/20100101 Firefox/89.0'
         }
-    def scrape(self, max_pages=20):
+    def scrape(self, max_pages=2):
         job_listings = []
         logging.info("Début du scraping des offres d'emploi.")
 
         for page in range(0, max_pages + 1):
+            nombre_offres_valides = 0
             url = f"{self.base_url}?page={page}"
             logging.info(f"Scraping de la page : {url}")
 
@@ -62,12 +62,11 @@ class Scraper:
                 # Extract publication date
                 date_tag = offer.find("time")
                 date = date_tag.text.strip() if date_tag else "N/A"
-                ## compare date
-                if date >= date_today:
+                if date == date_today:
                     publication_date = date
+                    nombre_offres_valides += 1
                 else:
                     continue
-
                 # Append job details to the list
                 job_listings.append({
                     "titre": title,
@@ -82,6 +81,7 @@ class Scraper:
                 })
 
             logging.info(f"{len(offers)} offres extraites de la page {page}.")
+            logging.info(f"{nombre_offres_valides} offres valides extraites de la page {page}.")
             time.sleep(2)
 
         self.save_to_csv(job_listings)

@@ -15,7 +15,7 @@ def load_config(config_file=CONFIG_FILE):
         config = yaml.safe_load(file)
         MIN_THRESHOLD = config["MIN_THRESHOLD"]
         return MIN_THRESHOLD
-def main(file_path=r"C:\Users\LENOVO\Desktop\project_job\Ocr_Model\uploads\test.pdf") :
+def main(file_path, user):
     File_path = file_path
     MIN_THRESHOLD = load_config()
     print(f"i get the file {file_path}")
@@ -39,6 +39,7 @@ def main(file_path=r"C:\Users\LENOVO\Desktop\project_job\Ocr_Model\uploads\test.
     try:
         print("Storing data...")
         db = get_mongo_connection()
+        formated_text["user"] = user
         db.insert_one(formated_text)
         print(f"{file_path} is processed and stored successfully in the database!")
     except Exception as e:

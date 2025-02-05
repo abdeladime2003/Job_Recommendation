@@ -8,10 +8,16 @@ from Ocr_Model.main import main
 from .utils.logger import logger
 from .matching_service import match_cv_to_jobs  # Import du matching
 from bson import ObjectId
+import os
+from rest_framework.permissions import IsAuthenticated 
+from rest_framework_simplejwt.authentication import JWTAuthentication
 logger.info("Logger initialisé pour le traitement des CVs.")
 
 class CVUploadView(APIView):
+    authentication_classes = [JWTAuthentication]  # ✅ Ensure JWT authentication is used
+    permission_classes = [IsAuthenticated]  # ✅ Require authentication
     def post(self, request, *args, **kwargs):
+        user = str(request.user)
         try:
             file = request.FILES.get('file')
             logger.info(f"Requête POST reçue pour le fichier {file.name}")
@@ -36,8 +42,7 @@ class CVUploadView(APIView):
             logger.info(f"Fichier {file.name} sauvegardé avec succès.")
 
             try:
-                cv_id = main(file_path)  # 🔥 Extraction OCR
-
+                cv_id = main(file_path , user)  # 🔥 Extraction OCr
                 print(f"📌 [DEBUG] ID du CV après extraction : {cv_id}")
 
                 # 🔥 Vérifier si le CV existe bien en MongoDB
@@ -56,7 +61,7 @@ class CVUploadView(APIView):
                 recommendations = match_cv_to_jobs(cv_id)
 
                 print(f"📌 [DEBUG] Recommandations générées : {len(recommendations)}")
-
+                os.remove(file_path)  # Supprimer le fichier après traitement
                 return Response({
                     "message": "Fichier traité avec succès.",
                     "recommendations": recommendations

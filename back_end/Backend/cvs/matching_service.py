@@ -11,9 +11,6 @@ recommendations_collection = db["recommendations"]
 def get_cv_skills(cv_id):
     """ Récupère les compétences extraites d'un CV et les transforme en liste """
     cv = cv_collection.find_one({"_id": ObjectId(cv_id)})
-
-    print(f"📌 [DEBUG] Données MongoDB pour {cv_id}: {cv}")  # 🔥 Ajout Debug
-
     if cv and "Skills" in cv:
         skills = cv["Skills"]
 
@@ -23,23 +20,14 @@ def get_cv_skills(cv_id):
 
         return skills
 
-    print(f"⚠️ Aucune compétence trouvée pour le CV {cv_id}")
+
     return []
 
 def get_all_jobs():
-    """ Récupère toutes les offres d'emploi avec leurs compétences et titres """
-    jobs = list(jobs_collection.find({}, {"_id": 1, "skills": 1, "jobTitle": 1}))
+    jobs = list(jobs_collection.find({}))
 
-    # Assurer que chaque job contient bien un `jobTitle`
-    jobs = [
-        {
-            "_id": job["_id"],
-            "skills": job["skills"],
-            "jobTitle": job.get("jobTitle",)  # ✅ Correction ici
-        }
-        for job in jobs if "skills" in job and isinstance(job["skills"], list)
-    ]
-
+    print(jobs[0])
+    print(type(jobs))
     print(f"📌 [DEBUG] Nombre d'offres analysées : {len(jobs)}")  
     return jobs
 
@@ -55,26 +43,30 @@ def match_cv_to_jobs(cv_id):
     """ Associe un CV aux offres d'emploi les plus pertinentes """
     cv_skills = get_cv_skills(cv_id)
     jobs = get_all_jobs()
-    print(jobs[0]["jobTitle"])
     job_skills_list = [job["skills"] for job in jobs]
     similarities = compute_similarity(cv_skills, job_skills_list)
     ranked_jobs = sorted(zip(jobs, similarities), key=lambda x: x[1], reverse=True)
-    print(ranked_jobs[0][0])
-    print(type(ranked_jobs[0]))
-    print(ranked_jobs)
     recommendations = [
         {
             "cv_id": str(cv_id),  
             "job_id": str(job["_id"]),  
             "job_title": job.get("jobTitle", "Titre inconnu"),
             "similarity": round(float(sim), 2),  
-            "_id": str(ObjectId())  
+            "_id": str(ObjectId())  ,
+            "company": job.get("company", "Entreprise inconnue"),
+            "location": job.get("location", "Localisation inconnue"),
+            "skills": job.get("skills", []) ,
+            "contract": job.get("typeContrat", "Type de contrat inconnu"),
+            "experience": job.get("experience", "Expérience inconnue"),
+            "education": job.get("studyLevel", "Niveau d'études inconnu"),
+            "telework": job.get("Remote", "Télétravail inconnu"),
+            "publication_date": job.get("publicationDate", "Date de publication inconnue"),
+            "deadline": job.get("date_limite", "Date limite inconnue"),
+            "link": job.get("link", "Lien inconnu"),
+            "number_of_posts": job.get("post_number", "Nombre de postes inconnu"),
         }
         for job, sim in ranked_jobs if sim > 0.2  
     ]
-
-    print(f"📌 [DEBUG] Nombre de recommandations trouvées : {len(recommendations)}")  
-
     if recommendations:
         recommendations_collection.insert_many(recommendations)
 

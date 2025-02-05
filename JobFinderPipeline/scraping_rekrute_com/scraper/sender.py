@@ -22,12 +22,13 @@ class Sender:
         if not data:
             logging.warning("Aucune donnée à envoyer.")
             return
-
+        data_sended = 0 
         for index, entry in enumerate(data, start=1):
             try:
                 response = self.session.post(self.api_url, json=entry, timeout=10)
                 response.raise_for_status()
                 logging.info(f"[{index}] Envoi réussi : {response.status_code} - {response.json()}")
+                data_sended += 1
             except requests.exceptions.HTTPError as http_err:
                 logging.error(f"[{index}] Erreur HTTP : {http_err} - Donnée : {entry}")
             except requests.exceptions.ConnectionError as conn_err:
@@ -38,6 +39,7 @@ class Sender:
                 logging.error(f"[{index}] Erreur inattendue : {err}")
             except Exception as e:
                 logging.error(f"[{index}] Exception inconnue : {e}")
+        logging.info(f"Total des offres envoyées : {data_sended}")
 
     def close_session(self):
         """Ferme proprement la session HTTP."""

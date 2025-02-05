@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os   
+from datetime import timedelta
 import sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'job_api',
     'user',
     'cvs',
+    'Feedbacks',
 ]
 AUTH_USER_MODEL = 'user.User'
 
@@ -63,8 +65,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"] # ✅ Autoriser les requêtes de `localhost:3000`
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+}
 CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF = 'Backend.urls'
+APPEND_SLASH = False
 
 TEMPLATES = [
     {

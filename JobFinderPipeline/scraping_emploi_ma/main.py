@@ -9,7 +9,7 @@ def main():
     sender = Sender()
 
     try:
-        job_data = scraper.scrape(max_pages=0)
+        job_data = scraper.scrape()
         sender.send(job_data)
     except Exception as e:
         logging.error(f"Erreur durant l'exécution : {e}")

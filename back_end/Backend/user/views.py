@@ -12,7 +12,10 @@ from drf_yasg.utils import swagger_auto_schema
 import jwt
 from .utils import Util
 from . import models
+from rest_framework.permissions import AllowAny
 class RegisterView(APIView):
+    permission_classes = [AllowAny]  # ✅ Ajouté
+
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
@@ -34,12 +37,15 @@ class RegisterView(APIView):
             Util.send_email(data)  
             return Response({'user': user_data, 'token': str(tokens)}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class LoginView(APIView):
+    permission_classes = [AllowAny]  # ✅ Ajouté
+
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
 
-        # Authentification de l'utilisateur
         user = authenticate(request, username=email, password=password)
         if user is not None: 
             if not user.is_verified:
@@ -50,7 +56,11 @@ class LoginView(APIView):
                 'access_token': str(refresh.access_token),
                 'user': user.first_name + ' ' + user.last_name
             }, status=status.HTTP_200_OK)
+
+
 class VerifyEmail(APIView):
+    permission_classes = [AllowAny]  # ✅ Ajouté
+
     serializer_class = EmailVerificationSerializer
     token_param_config = openapi.Parameter(
         'token', in_=openapi.IN_QUERY, description='Token de vérification', type=openapi.TYPE_STRING

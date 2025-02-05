@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Upload, History, ChevronRight, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import FeedbackForm from './Feedback';
 
 const mockUser = {
@@ -63,7 +64,7 @@ const Dashboard = () => {
         return `${baseStyle} bg-gray-100 text-gray-800 border border-gray-200 hover:bg-gray-200`;
     }
   };
-
+  const Navigate = useNavigate();
   const getStatusText = (status) => {
     const statusMap = {
       recommended: 'Recommandé',
@@ -100,7 +101,7 @@ const Dashboard = () => {
                     </span>
                   </p>
                 </div>
-                <button className="group flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white px-6 py-3 rounded-lg transition-all duration-500 shadow-md hover:shadow-xl transform hover:-translate-y-1">
+                <button className="group flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white px-6 py-3 rounded-lg transition-all duration-500 shadow-md hover:shadow-xl transform hover:-translate-y-1" onClick={() => Navigate("/upload")}>
                   <Upload className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
                   <span className="relative">
                     <span className="absolute -inset-1 rounded-lg bg-white/20 group-hover:blur animate-pulse"></span>

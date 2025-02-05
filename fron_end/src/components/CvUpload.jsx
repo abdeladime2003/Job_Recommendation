@@ -55,12 +55,13 @@ const CVUpload = () => {
     const formData = new FormData();
     formData.append('file', file);
     console.log('Uploading:', file);
+    const token = localStorage.getItem('accessToken');
     try {
       setUploadStatus('uploading');
-      
       const response = await axios.post('http://localhost:8000/cvs/upload/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          'Authorization' : `Bearer ${token}`
         }
       });
       console.log('Upload response:', response.data);
