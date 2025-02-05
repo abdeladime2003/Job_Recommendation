@@ -22,7 +22,7 @@ sys.path.append(os.path.join(BASE_DIR, '../../resume_automation'))
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q65@4+af53t$!#%5(pradgx8!82kf++j-72=c8ko9210j0wi31'
+SECRET_KEY = 'secretkey'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -112,13 +112,7 @@ DATABASES = {
     }
 }
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'abdeladimebenali2003@gmail.come'
-EMAIL_HOST_PASSWORD = 'hpkq anvr qcem plnw'
-DEFAULT_FROM_EMAIL = 'abdeladimebenali2003@gmail.com'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
