@@ -53,7 +53,7 @@ class LLMTextToDict:
             str: The API key for Google's Generative AI
         """
         try:
-            API_KEY = "AIzaSyDNVRLBwEkz6KcOEsTXaEuLrHpUp94HJo0"
+            API_KEY = "your api"
             return API_KEY
         except Exception as e:
             self.logger.error(f"Problem occured while reading from .env file: {e}")
