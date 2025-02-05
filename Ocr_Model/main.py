@@ -45,7 +45,6 @@ def main(file_path, user):
     except Exception as e:
         print(f"Error while storing data: {e}")
         return None
-        ## return the id of the cv stored in the database
     return formated_text["_id"]
 if __name__ == "__main__":
     main()

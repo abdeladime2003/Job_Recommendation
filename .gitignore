@@ -110,3 +110,4 @@ db.sqlite3
 data/
 template.env
 *.env
+__init__.py

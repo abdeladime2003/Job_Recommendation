@@ -7,7 +7,7 @@ def main():
     logging.info("Démarrage du processus de scraping et d'envoi des données...")
 
     # Étape 1 : Scraper les données
-    scraper = RekruteScraper(total_pages=3)  # Modifier le nombre de pages à scraper si besoin
+    scraper = RekruteScraper(total_pages=3)  
     try:
         scraper.scrape_all_pages()
         scraper.save_to_csv()

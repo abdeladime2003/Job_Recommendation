@@ -49,8 +49,6 @@ const CallToAction = () => {
               <span className="text-purple-700 font-medium">En savoir plus</span>
             </button>
           </div>
-
-          {/* Quick stats */}
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
             {[
               { value: '3+', label: 'Utilisateurs actifs' },
